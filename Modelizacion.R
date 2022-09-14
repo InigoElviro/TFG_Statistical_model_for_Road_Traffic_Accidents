@@ -7,8 +7,8 @@
 
 #PASOS PREVIOS A LOS MODELOS 2009-2021#
 
-años=c(2009:2021)
-delta_09_21=subset(delta, year %in% años)
+aÃ±os=c(2009:2021)
+delta_09_21=subset(delta, year %in% aÃ±os)
 delta_09_21=(delta_09_21[!duplicated(delta_09_21$IPF_MD5,delta_09_21$FECHAACCIDENTE),])
 y=delta_09_21$y
 hour=delta_09_21$hour
@@ -16,27 +16,27 @@ wday=delta_09_21$wday
 month=delta_09_21$month
 day_year=delta_09_21$day_year
 
-# delta_09_21$dias_años=as.numeric(difftime(as.Date(delta_09_21$FECHAACCIDENTE), as.Date("2008-12-31"), unit="days"))
-# dias_años=delta_09_21$dias_años
+# delta_09_21$dias_aÃ±os=as.numeric(difftime(as.Date(delta_09_21$FECHAACCIDENTE), as.Date("2008-12-31"), unit="days"))
+# dias_aÃ±os=delta_09_21$dias_aÃ±os
 
 
 aux.yday.hour=(delta_09_21$year*100000+delta_09_21$day_year*100+delta_09_21$hour)
-#aux.yday.hour = round((delta_09_21$dias_años + (delta_09_21$hour-1)/24),6)
+#aux.yday.hour = round((delta_09_21$dias_aÃ±os + (delta_09_21$hour-1)/24),6)
 respuesta=tapply(y, list(aux.yday.hour ), sum, na.rm=TRUE)
 respuesta=as.data.frame(respuesta)
 respuesta[is.na(respuesta)] = 0
 names(respuesta)=c('y')
 
-#respuesta$y se depuran los datos para evitar que accidentes con multiples personas nvolucradoas como el autobus del 30-nov-2010, den lugar a un número de accidentes sobrerepresentado
+#respuesta$y se depuran los datos para evitar que accidentes con multiples personas nvolucradoas como el autobus del 30-nov-2010, den lugar a un nÃºmero de accidentes sobrerepresentado
 respuesta$y[respuesta$y==75]=1
 #respuesta$y[is.element(respuesta$year,c(2010))&is.element(respuesta$day_year,c(330))&is.element(respuesta$hour,c(6))]=1
 respuesta$y[respuesta$y==19]=1
 #respuesta$y[respuesta$y>=15]=1
-# respuesta$dias_años=tapply(dias_años, list(aux.yday.hour), mean, na.rm=TRUE)
+# respuesta$dias_aÃ±os=tapply(dias_aÃ±os, list(aux.yday.hour), mean, na.rm=TRUE)
 # respuesta$hour=tapply(hour, list(aux.yday.hour), mean, na.rm=TRUE)
 # respuesta$wday=tapply(wday, list(aux.yday.hour), mean, na.rm=TRUE)
 # respuesta$month=tapply(month, list(aux.yday.hour), mean, na.rm=TRUE)
-# respuesta$arm_dia=tapply(dias_años, list(aux.yday.hour), mean, na.rm=TRUE)
+# respuesta$arm_dia=tapply(dias_aÃ±os, list(aux.yday.hour), mean, na.rm=TRUE)
 # respuesta$arm_hora=tapply(hour, list(aux.yday.hour), mean, na.rm=TRUE)
 
 respuesta$lluvia=(tapply(delta_09_21$lluvia, list(aux.yday.hour), sum, na.rm=TRUE)>0)
@@ -63,7 +63,7 @@ aux.v=aux.date[,2:5]
 colnames(aux.v)=c("year","day_year","hour","aux.yday.hour")
 #aux.yday.hour=round((delta$year*100000+delta$day_year*100+delta$hour), 6)
 
-#aux.vday_year=1:(365*length(años)+sum(leap_year(años)))
+#aux.vday_year=1:(365*length(aÃ±os)+sum(leap_year(aÃ±os)))
 # aux.vday_year=aux.date[,4]
 # aux.vday_hour=1:24
 # aux.v = expand.grid(aux.vday_year , (aux.vday_hour-1)/24)
@@ -85,7 +85,7 @@ respuesta$arm_hora=tapply(hour, list(aux.yday.hour), mean, na.rm=TRUE)
 # day_years=respuesta$day_years
 # respuesta$arm_dia=tapply(day_years, list(aux.yday.hour), mean, na.rm=TRUE)
 
-#dias=365*length(años)+sum(leap_year(años))
+#dias=365*length(aÃ±os)+sum(leap_year(aÃ±os))
 respuesta$c1d=cos(2*pi*respuesta$arm_dia/366)
 respuesta$s1d=sin(2*pi*respuesta$arm_dia/366)
 respuesta$c2d=cos(4*pi*respuesta$arm_dia/366)
@@ -107,7 +107,7 @@ respuesta$s3h=sin(6*pi*respuesta$arm_hora/24)
 
 #------------------------------------#
 
-respuesta$dia_año=respuesta$day_year+respuesta$year*1000
+respuesta$dia_aÃ±o=respuesta$day_year+respuesta$year*1000
 i=(as.Date("15-03-2020", "%d-%m-%Y"))
 f=(as.Date("21-06-2020", "%d-%m-%Y"))
 f_est_alar=(as.Date("9-05-2021", "%d-%m-%Y"))
@@ -115,22 +115,18 @@ inicio=yday(i)+year(i)*1000
 final=yday(f)+year(f)*1000
 final_estado_alarma=yday(f_est_alar)+year(f_est_alar)*1000
 
-respuesta$conf=as.numeric(is.element(respuesta$dia_año,inicio:final))
-respuesta$covid=as.numeric(is.element(respuesta$dia_año,final:final_estado_alarma))
+respuesta$conf=as.numeric(is.element(respuesta$dia_aÃ±o,inicio:final))
+respuesta$covid=as.numeric(is.element(respuesta$dia_aÃ±o,final:final_estado_alarma))
 
 #------------------------------------#
-subset_respuesta=subset(respuesta,respuesta$dia_año>0)
+subset_respuesta=subset(respuesta,respuesta$dia_aÃ±o>0)
 
-# prob_acc=tapply(subset_respuesta$y, list(subset_respuesta$dia_año), sum, na.rm=TRUE)
+# prob_acc=tapply(subset_respuesta$y, list(subset_respuesta$dia_aÃ±o), sum, na.rm=TRUE)
 # summary(prob_acc)
 
-prob_leve=tapply(subset_respuesta$leve, list(subset_respuesta$dia_año), sum, na.rm=TRUE)
-prob_grave=tapply(subset_respuesta$grave, list(subset_respuesta$dia_año), sum, na.rm=TRUE)
-prob_muerte=tapply(subset_respuesta$muertos, list(subset_respuesta$dia_año), sum, na.rm=TRUE)
-
-#prob_leve=tapply(subset_respuesta$leve, list(subset_respuesta$day_year), sum, na.rm=TRUE)/13
-#prob_grave=tapply(subset_respuesta$grave, list(subset_respuesta$day_year), sum, na.rm=TRUE)/13
-#prob_muerte=tapply(subset_respuesta$muertos, list(subset_respuesta$day_year), sum, na.rm=TRUE)/13
+prob_leve=tapply(subset_respuesta$leve, list(subset_respuesta$dia_aÃ±o), sum, na.rm=TRUE)
+prob_grave=tapply(subset_respuesta$grave, list(subset_respuesta$dia_aÃ±o), sum, na.rm=TRUE)
+prob_muerte=tapply(subset_respuesta$muertos, list(subset_respuesta$dia_aÃ±o), sum, na.rm=TRUE)
 
 p_leve=summary(prob_leve)[4]
 p_grave=summary(prob_grave)[4]
@@ -393,7 +389,7 @@ plot_model(M_Final,sort.est=TRUE)+theme (axis.text.x = element_text(size=rel(2))
 
 #------------------------------------#
 
-#REPRESENTACIÓN DEL CICLO HORARIO
+#REPRESENTACIÃ“N DEL CICLO HORARIO
 
 aux.x=respuesta$hour
 aux.y=summary(M_g1)$coef[2,1]*respuesta$c1h+
@@ -425,7 +421,7 @@ abline(h=c(1), lty=3, lwd=0.1,col="blue")
 
 #------------------------------------#
 
-#INCLUIR INTERACCIÓN  ITINERE
+#INCLUIR INTERACCIÃ“N  ITINERE
 #aux.y=0+0*respuesta$year+summary(M_g1)$coef[1]
 
 aux.x=respuesta$day_year
@@ -441,7 +437,7 @@ for (i.coeff in 1:4){
 
 aux.y.plot=tapply(aux.y, aux.x, mean)
 aux.y.plot.mision=aux.y.plot
-plot(0:366, exp(aux.y.plot), type="n",main="",xlab = "día",ylab = "effect",cex.lab=1.5,cex.axis=2)
+plot(0:366, exp(aux.y.plot), type="n",main="",xlab = "dÃ­a",ylab = "effect",cex.lab=1.5,cex.axis=2)
 my_label=cut(0:366, c(0,32,60,91,121,152,182,213,244,274,305,335,366),labels=c("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic" ), include.lowest=T)
 a=c(0,32,60,91,121,152,182,213,244,274,305,335)
 b=c(32,60,91,121,152,182,213,244,274,305,335,366)
@@ -472,7 +468,7 @@ hist(aux.y.plot.itinere/aux.y.plot.mision)
 
 #------------------------------------#
 
-#INCLUIR INTERACCIÓN  
+#INCLUIR INTERACCIÃ“N  
 
 aux.x=respuesta$day_year
 efect_0=summary(M_g1)$coef[1]
@@ -511,7 +507,7 @@ aux.ylab1=TeX("\\hat{\\mu}")
 #PLOT EFECTO 0
 linea=5
 
-plot(0:366, exp(aux.y.plot_0),ylim=c(min,max), type="n",main="",xlab = "día",ylab = "",cex.lab=1.5,cex.axis=2)
+plot(0:366, exp(aux.y.plot_0),ylim=c(min,max), type="n",main="",xlab = "dÃ­a",ylab = "",cex.lab=1.5,cex.axis=2)
 title(ylab=aux.ylab, line=2, cex.lab=1.75)
 my_label=cut(0:366, c(0,32,60,91,121,152,182,213,244,274,305,335,366),labels=c("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic" ), include.lowest=T)
 a=c(0,32,60,91,121,152,182,213,244,274,305,335)
@@ -544,7 +540,7 @@ sum_itinere_mision=summary(itinere_mision)
 
 xmin=floor(sum_itinere_mision[1])
 xmax=ceiling(sum_itinere_mision[6])
-hist(exp(aux.y.plot.itinere)/exp(aux.y.plot.mision),main="",xlim = c(xmin,xmax),cex.axis=2,cex.lab=1.5, xlab="Itinere / Misión")
+hist(exp(aux.y.plot.itinere)/exp(aux.y.plot.mision),main="",xlim = c(xmin,xmax),cex.axis=2,cex.lab=1.5, xlab="Itinere / MisiÃ³n")
 #dev.print(pdf, 'itinere_vs_mision.pdf' ,  height=10, width=10 )
 
 #------------------------------------#
@@ -648,8 +644,8 @@ abline(v=c(32,60,91,121,152,182,213,244,274,305,335), lty=3, lwd=0.1)
 
 
 basura=predict(M_Final, type="response")
-basura1=tapply(basura, list(respuesta$dia_año), sum, na.rm=TRUE)
-basura2=tapply(basura, list(respuesta$dia_año,respuesta$itinere>0), sum, na.rm=TRUE)
+basura1=tapply(basura, list(respuesta$dia_aÃ±o), sum, na.rm=TRUE)
+basura2=tapply(basura, list(respuesta$dia_aÃ±o,respuesta$itinere>0), sum, na.rm=TRUE)
 basura3=apply(basura2, 2, mean, na.rm=TRUE)
 
 summary(basura1-apply(basura2,1,sum))
