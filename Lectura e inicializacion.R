@@ -1,7 +1,7 @@
 #LECTURA E INICIALIZACION DE VARIABLES#
 #------------------------------------#
 
-setwd("D:/Users/Íñigo/Desktop/TFG")
+setwd("D:/Users/ÃÃ±igo/Desktop/TFG")
 
 #------------------------------------#
 
@@ -155,11 +155,11 @@ delta_P=prueba
 colnames(delta_P)[which(names(delta_P) == "mycol4")] ="ubicacion"
 delta_poligonos=delta_P
 
-tamaño=delta_poligonos$PLANTILLAE
-tamaño=cut(tamaño, breaks=c(0,50,249,Inf))
-levels(tamaño)
-levels(tamaño)=c("Pequeña Eª","Mediana Eª","Gran Eª")
-delta_poligonos$tamaño=tamaño
+tamaÃ±o=delta_poligonos$PLANTILLAE
+tamaÃ±o=cut(tamaÃ±o, breaks=c(0,50,249,Inf))
+levels(tamaÃ±o)
+levels(tamaÃ±o)=c("PequeÃ±a EÂª","Mediana EÂª","Gran EÂª")
+delta_poligonos$tamaÃ±o=tamaÃ±o
 
 #------------------------------------#
 
@@ -180,73 +180,4 @@ sum(duplicated(aux.acc$IPF_MD5,aux.acc$FECHAACCIDENTE))
 
 
 #------------------------------------#
-
-#PASOS PREVIOS A LOS MODELOS 2021#
-
-# delta_21=subset(delta, year==2021)
-# y=delta_21$y
-# hour=delta_21$hour
-# wday=delta_21$wday
-# month=delta_21$month
-# day_year=delta_21$day_year
-# 
-# aux.yday.hour = round((delta_21$day_year + (delta_21$hour-1)/24),6)
-# respuesta_2021=tapply(y, list(aux.yday.hour ), sum, na.rm=TRUE)
-# respuesta_2021=as.data.frame(respuesta_2021)
-# respuesta_2021[is.na(respuesta_2021)] = 0
-# names(respuesta_2021)=c('y')
-# 
-# respuesta_2021$day_year=tapply(day_year, list(aux.yday.hour), mean, na.rm=TRUE)
-# respuesta_2021$hour=tapply(hour, list(aux.yday.hour), mean, na.rm=TRUE)
-# respuesta_2021$wday=tapply(wday, list(aux.yday.hour), mean, na.rm=TRUE)
-# respuesta_2021$month=tapply(month, list(aux.yday.hour), mean, na.rm=TRUE)
-# respuesta_2021$arm_dia=tapply(day_year, list(aux.yday.hour), mean, na.rm=TRUE)
-# respuesta_2021$arm_hora=tapply(hour, list(aux.yday.hour), mean, na.rm=TRUE)
-# 
-# respuesta_2021$lluvia=(tapply(delta_21$lluvia, list(aux.yday.hour), sum, na.rm=TRUE)>0)
-# respuesta_2021$itinere=tapply(delta_21$itinere, list(aux.yday.hour), sum, na.rm=TRUE)
-# respuesta_2021$alcance=(tapply(delta_21$alcance, list(aux.yday.hour), sum, na.rm=TRUE)>0)
-# respuesta_2021$fin_de_semana=is.element(respuesta_2021$wday,c(6,7))
-# 
-# dim(respuesta_2021)
-# respuesta_2021=rownames_to_column(respuesta_2021, "aux.yday.hour")
-# respuesta_2021$aux.yday.hour=as.numeric(respuesta_2021$aux.yday.hour)
-# 
-# aux.vday_year=1:365
-# aux.vday_hour=1:24
-# aux.v = expand.grid(aux.vday_year , (aux.vday_hour-1)/24)
-# aux.v$aux.yday.hour=round((aux.v$Var1+aux.v$Var2), 6)
-# 
-# prueba=merge(respuesta_2021, aux.v, all = TRUE)
-# prueba[is.na(prueba)] = 0
-# prueba$Var1=NULL
-# prueba$Var2=NULL
-# respuesta_2021=prueba
-# 
-# respuesta_2021$c1d=cos(2*pi* respuesta_2021$arm_dia/365)
-# respuesta_2021$s1d=sin(2*pi*respuesta_2021$arm_dia/365)
-# respuesta_2021$c2d=cos(4*pi*respuesta_2021$arm_dia/365)
-# respuesta_2021$s2d=sin(4*pi*respuesta_2021$arm_dia/365)
-# respuesta_2021$c3d=cos(6*pi*respuesta_2021$arm_dia/365)
-# respuesta_2021$s3d=sin(6*pi*respuesta_2021$arm_dia/365)
-# respuesta_2021$c4d=cos(8*pi*respuesta_2021$arm_dia/365)
-# respuesta_2021$s4d=sin(8*pi*respuesta_2021$arm_dia/365)
-# respuesta_2021$c5d=cos(10*pi*respuesta_2021$arm_dia/365)
-# respuesta_2021$s5d=sin(10*pi*respuesta_2021$arm_dia/365)
-# 
-# respuesta_2021$c1h=cos(2*pi*respuesta_2021$arm_hora/24)
-# respuesta_2021$s1h=sin(2*pi*respuesta_2021$arm_hora/24)
-# respuesta_2021$c2h=cos(4*pi*respuesta_2021$arm_hora/24)
-# respuesta_2021$s2h=sin(4*pi*respuesta_2021$arm_hora/24)
-# respuesta_2021$c3h=cos(6*pi*respuesta_2021$arm_hora/24)
-# respuesta_2021$s3h=sin(6*pi*respuesta_2021$arm_hora/24)
-
-
-
-
-
-
-
-
-
 

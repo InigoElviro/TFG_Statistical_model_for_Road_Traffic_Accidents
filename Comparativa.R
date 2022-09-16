@@ -31,7 +31,7 @@ aux.20=informe(delta_poligonos,c(2020:2021))
 
 
 
-graficos_años=function(a){
+graficos_aÃ±os=function(a){
 v1=aux.09[[3]][a,1:4]
 v2=aux.17[[3]][a,1:4]
 v3=aux.20[[3]][a,1:4]
@@ -45,7 +45,7 @@ text(bp, (as.matrix(accidentabilidad[1:3,1:4])), round((as.matrix(accidentabilid
 return(accidentabilidad)
 }
 
-graficos_años(2)
+graficos_aÃ±os(2)
 #dev.print(pdf, 'acc_medianas.pdf' ,  height=10, width=10 )
 
 
@@ -53,6 +53,4 @@ v1=aux.09[[4]]
 v2=aux.17[[4]]
 v3=aux.20[[4]]
 obten_tabla(t(matrix(paste(v1,v2,v3, sep="/"),nrow = 5, byrow = TRUE)))
-
-
 
