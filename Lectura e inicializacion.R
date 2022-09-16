@@ -1,19 +1,14 @@
 #LECTURA E INICIALIZACION DE VARIABLES#
 #------------------------------------#
 
-setwd("D:/Users/Íñigo/Desktop/TFG")
+setwd("") #DIRECTORIO DE TRABAJO
 
 #------------------------------------#
 
-#LECTURA
+#LECTURA DE BASE DE DATOS
 
-# delta_21=read_xlsx("2021_TRAFICO.xlsx", skip=2, col_names = FALSE)
-# colnames(delta_21)=colnames(read_xlsx("2021_TRAFICO.xlsx", col_names = TRUE))
-# dim(delta_21)
-# Poligonos=read.csv("Poligonos.csv")
-
-delta=read_xlsx("TRAFICO_2009_2022.xlsx", skip=2, col_names = FALSE)
-colnames(delta)=colnames(read_xlsx("TRAFICO_2009_2022.xlsx", col_names = TRUE))
+delta=read_xlsx("base_datos.xlsx", skip=2, col_names = FALSE)
+colnames(delta)=colnames(read_xlsx("base_datos.xlsx", col_names = TRUE))
 dim(delta)
 
 #------------------------------------#
