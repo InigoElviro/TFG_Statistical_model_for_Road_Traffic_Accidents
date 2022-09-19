@@ -9,7 +9,7 @@ month=aux.respuesta$month
 day_year=aux.respuesta$day_year
 aux.respuesta$day_years=aux.respuesta$day_year+365*(aux.respuesta$year-2009)+sum(leap_year(aux.respuesta$year-2009))
 
-dias=365*length(años)+sum(leap_year(años))
+dias=365*length(aÃ±os)+sum(leap_year(aÃ±os))
 aux.respuesta$c1d=cos(2*pi* aux.respuesta$day_years/dias)
 aux.respuesta$s1d=sin(2*pi*aux.respuesta$day_years/dias)
 aux.respuesta$c2d=cos(4*pi*aux.respuesta$day_years/dias)
