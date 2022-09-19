@@ -1,20 +1,20 @@
 #PRUEBAS#
 #------------------------------------#
 
-accidentes_años=function(){
+accidentes_aÃ±os=function(){
   
   accidentados=delta$accidentes
   dia=delta$day_year
-  año=delta$year
-  accidentados_por_dia_año=tapply(accidentados, list(dia, año),sum , na.rm=T)
-  accidentados_por_dia_año= as.data.frame(accidentados_por_dia_año)
-  inicio=which( colnames(accidentados_por_dia_año)=="2009" )
-  fin=which( colnames(accidentados_por_dia_año)=="2021" )
-  accidentados_por_dia_año=accidentados_por_dia_año[,c(inicio:fin)]
+  aÃ±o=delta$year
+  accidentados_por_dia_aÃ±o=tapply(accidentados, list(dia, aÃ±o),sum , na.rm=T)
+  accidentados_por_dia_aÃ±o= as.data.frame(accidentados_por_dia_aÃ±o)
+  inicio=which( colnames(accidentados_por_dia_aÃ±o)=="2009" )
+  fin=which( colnames(accidentados_por_dia_aÃ±o)=="2021" )
+  accidentados_por_dia_aÃ±o=accidentados_por_dia_aÃ±o[,c(inicio:fin)]
   par(mfrow=c(2,4))
-  aux.x=rownames(accidentados_por_dia_año)
-  for(i.year in 1:length(colnames(accidentados_por_dia_año))){
-    aux.y=accidentados_por_dia_año[,i.year]
+  aux.x=rownames(accidentados_por_dia_aÃ±o)
+  for(i.year in 1:length(colnames(accidentados_por_dia_aÃ±o))){
+    aux.y=accidentados_por_dia_aÃ±o[,i.year]
     plot(aux.x, aux.y, main=i.year)
     abline(v=which.min(aux.y), col=4)
     abline(v=which.max(aux.y), col=2)
@@ -23,7 +23,7 @@ accidentes_años=function(){
 
 
 
-efecto_dia_año=function(){
+efecto_dia_aÃ±o=function(){
   
   par(mfrow=c(2,4))
   for(i.year in 2009:2021){
@@ -54,9 +54,9 @@ efecto_dia_año=function(){
   abline(v=c(32,60,91,121,152,182,213,244,274,305,335), lty=3, lwd=0.1)
    } 
 }
-#efecto_dia_año()
+#efecto_dia_aÃ±o()
 
-efecto_dia_año_periodo=function(periodo){
+efecto_dia_aÃ±o_periodo=function(periodo){
   
     par(mfrow=c(1,1))
     aux.marcador=is.element(delta$year,periodo)
@@ -84,27 +84,27 @@ efecto_dia_año_periodo=function(periodo){
     plot(aux.x, exp(aux.y), cex.axis=2)
     abline(v=c(32,60,91,121,152,182,213,244,274,305,335), lty=3, lwd=0.1)
 }
-efecto_dia_año_periodo(2009:2016)
-efecto_dia_año_periodo(2017:2019)
-efecto_dia_año_periodo(2020:2021)
+efecto_dia_aÃ±o_periodo(2009:2016)
+efecto_dia_aÃ±o_periodo(2017:2019)
+efecto_dia_aÃ±o_periodo(2020:2021)
 
 dev.print(pdf, 'arm_dia_20.pdf' ,  height=10, width=10 )
 
 
-accidentes_años_semana=function(){
+accidentes_aÃ±os_semana=function(){
   
   accidentados=delta$accidentes
   mes=delta$month
-  año=delta$year
-  accidentados_por_dia_año=tapply(accidentados, list(mes, año),sum , na.rm=T)
-  accidentados_por_dia_año= as.data.frame(accidentados_por_dia_año)
-  inicio=which( colnames(accidentados_por_dia_año)=="2009" )
-  fin=which( colnames(accidentados_por_dia_año)=="2021" )
-  accidentados_por_dia_año=accidentados_por_dia_año[,c(inicio:fin)]
+  aÃ±o=delta$year
+  accidentados_por_dia_aÃ±o=tapply(accidentados, list(mes, aÃ±o),sum , na.rm=T)
+  accidentados_por_dia_aÃ±o= as.data.frame(accidentados_por_dia_aÃ±o)
+  inicio=which( colnames(accidentados_por_dia_aÃ±o)=="2009" )
+  fin=which( colnames(accidentados_por_dia_aÃ±o)=="2021" )
+  accidentados_por_dia_aÃ±o=accidentados_por_dia_aÃ±o[,c(inicio:fin)]
   par(mfrow=c(2,4))
-  aux.x=rownames(accidentados_por_dia_año)
-  for(i.year in 1:length(colnames(accidentados_por_dia_año))){
-    aux.y=accidentados_por_dia_año[,i.year]
+  aux.x=rownames(accidentados_por_dia_aÃ±o)
+  for(i.year in 1:length(colnames(accidentados_por_dia_aÃ±o))){
+    aux.y=accidentados_por_dia_aÃ±o[,i.year]
     plot(aux.x, aux.y, main=i.year)
     abline(v=which.min(aux.y), col=4)
     abline(v=which.max(aux.y), col=2)
