@@ -91,7 +91,7 @@ accidentes_dia_semana=function(df){
   accidentados_por_hora_dia= as.data.frame(accidentados_por_hora_dia)
   accidentados_por_hora_dia=accidentados_por_hora_dia[,c(3,4,5,2,7,6,1)]
   accidentados_por_hora_dia$Total=rowSums(accidentados_por_hora_dia, na.rm=T)
-  colnames(accidentados_por_hora_dia)=c("Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo")
+  colnames(accidentados_por_hora_dia)=c("Lunes","Martes","MiÃ©rcoles","Jueves","Viernes","SÃ¡bado","Domingo")
   par(mfrow=c(2,4))
   aux.x=rownames(accidentados_por_hora_dia)
   for(i.day in 1:7){
@@ -116,13 +116,13 @@ accidentes_todos_los_dias_semana_color=function(df){
   aux.x=rownames(accidentados_por_hora_dia)
   for(i.day in 1:7){
     aux.y=accidentados_por_hora_dia[,i.day]
-    if(i.day==1) plot(aux.x, aux.y, ylim = c(0, ylim.sup),lwd=1.5,cex.axis=2,ylab = "Nº accidentes",xlab = "",cex.lab=1.5)
+    if(i.day==1) plot(aux.x, aux.y, ylim = c(0, ylim.sup),lwd=1.5,cex.axis=2,ylab = "NÂº accidentes",xlab = "",cex.lab=1.5)
     lines(aux.x, aux.y, lty=i.day,col=i.day,lwd=1.5)
     #if(i.day==6|i.day==7)lines(aux.x, aux.y, lty=i.day, col=c("green"))
     abline(v=which.min(aux.y)-1, col=4, lty=i.day)
     abline(v=which.max(aux.y)-1, col=2, lty=i.day)
     cat(i.day, which.min(aux.y)-1,which.max(aux.y)-1, sep="&", fill=T )
-    legend("topright", legend=c("Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"), lty=1:7,col=1:7,lwd=3, cex=1)
+    legend("topright", legend=c("Lunes","Martes","MiÃ©rcoles","Jueves","Viernes","SÃ¡bado","Domingo"), lty=1:7,col=1:7,lwd=3, cex=1)
   
   }
   
@@ -142,7 +142,7 @@ accidentes_todos_los_dias_semana=function(df){
   aux.x=rownames(accidentados_por_hora_dia)
   for(i.day in 1:7){
     aux.y=accidentados_por_hora_dia[,i.day]
-    if(i.day==1) plot(aux.x, aux.y, ylim = c(0, ylim.sup),cex.axis=2,ylab = "Nº accidentes",xlab = "",cex.lab=1.5)
+    if(i.day==1) plot(aux.x, aux.y, ylim = c(0, ylim.sup),cex.axis=2,ylab = "NÂº accidentes",xlab = "",cex.lab=1.5)
     lines(aux.x, aux.y, lty=i.day)
     if(i.day==6|i.day==7)lines(aux.x, aux.y, lty=i.day, col=c("green"))
     abline(v=which.min(aux.y)-1, col=4, lty=i.day)
@@ -154,7 +154,7 @@ accidentes_todos_los_dias_semana=function(df){
 
 }#End_function_6_extra
 
-efecto_dia_año=function(df){
+efecto_dia_aÃ±o=function(df){
   
   df$c1d=cos(2*pi*df$day_year/365)
   df$s1d=sin(2*pi*df$day_year/365)
@@ -186,7 +186,7 @@ efecto_dia_año=function(df){
 }#End_function_7
 
 
-accidentes_año=function(df){
+accidentes_aÃ±o=function(df){
   
   par(mfrow=c(1,1))
   accidentados=df$accidentes
@@ -212,7 +212,7 @@ accidentes_año=function(df){
 }#End_function_8
 
 
-efecto_dia_semana=function(df,dias,año){
+efecto_dia_semana=function(df,dias,aÃ±o){
   
   aux.marcador=is.element(df$wday,dias)
   aux_day_week=yday(df$FECHAACCIDENTE[aux.marcador])
@@ -227,7 +227,7 @@ efecto_dia_semana=function(df,dias,año){
   aux_collapse$year=tapply(aux_day_week$year, aux_day_week$year+aux_day_week$y_day/366, mean)
   aux_collapse$y=tapply(aux_day_week$y, aux_day_week$year+aux_day_week$y_day/366, sum)
   aux_collapse$y.accidente=tapply(aux_day_week$y>0, aux_day_week$year+aux_day_week$y_day/366, sum)
-  aux_collapse=aux_collapse[aux_collapse$year==año,]
+  aux_collapse=aux_collapse[aux_collapse$year==aÃ±o,]
   aux_collapse$c1d=cos(2*pi*aux_collapse$y_day/365)
   aux_collapse$s1d=sin(2*pi*aux_collapse$y_day/365)
   aux_collapse$c2d=cos(4*pi*aux_collapse$y_day/365)
@@ -251,7 +251,7 @@ efecto_dia_semana=function(df,dias,año){
 }#End_function_9
 
 
-efecto_dia_hora=function(df,hora,año){
+efecto_dia_hora=function(df,hora,aÃ±o){
   
   aux.marcador=is.element(df$hour,c(hora))
   aux_day_week=yday(df$FECHAACCIDENTE[aux.marcador])
@@ -266,7 +266,7 @@ efecto_dia_hora=function(df,hora,año){
   aux_collapse$year=tapply(aux_day_week$year, aux_day_week$year+aux_day_week$y_day/366, mean)
   aux_collapse$y=tapply(aux_day_week$y, aux_day_week$year+aux_day_week$y_day/366, sum)
   aux_collapse$y.accidente=tapply(aux_day_week$y>0, aux_day_week$year+aux_day_week$y_day/366, sum)
-  aux_collapse=aux_collapse[aux_collapse$year==año,]
+  aux_collapse=aux_collapse[aux_collapse$year==aÃ±o,]
   aux_collapse$c1d=cos(2*pi*aux_collapse$y_day/365)
   aux_collapse$s1d=sin(2*pi*aux_collapse$y_day/365)
   aux_collapse$c2d=cos(4*pi*aux_collapse$y_day/365)
@@ -291,7 +291,7 @@ efecto_dia_hora=function(df,hora,año){
   
 }#End_function_10
 
-efecto_dia_semana_hora=function(df,hora.min,hora.max,año){
+efecto_dia_semana_hora=function(df,hora.min,hora.max,aÃ±o){
   ancho_graf=length(hora.min:hora.max)
   if(ancho_graf<=4){par(mfrow=c(1,ancho_graf))} else{par(mfrow=c(2,4))} 
   
@@ -309,7 +309,7 @@ efecto_dia_semana_hora=function(df,hora.min,hora.max,año){
     aux_collapse$year=tapply(aux_day_week$year, aux_day_week$year+aux_day_week$w_day/7, mean)
     aux_collapse$y=tapply(aux_day_week$y, aux_day_week$year+aux_day_week$w_day/7, sum)
     aux_collapse$y.accidente=tapply(aux_day_week$y>0, aux_day_week$year+aux_day_week$w_day/7, sum)
-    aux_collapse=aux_collapse[aux_collapse$year==año,]
+    aux_collapse=aux_collapse[aux_collapse$year==aÃ±o,]
     aux_collapse$c1d=cos(2*pi*aux_collapse$w_day/7)
     aux_collapse$s1d=sin(2*pi*aux_collapse$w_day/7)
     aux_collapse$c2d=cos(4*pi*aux_collapse$w_day/7)
@@ -368,13 +368,13 @@ obten_confint=function(modelo){
   }
 }#End_function_15
 
-frame_poligono=function(data_frame, poligono, años){
+frame_poligono=function(data_frame, poligono, aÃ±os){
   
   #PASOS PREVIOS A LOS MODELOS 2009-2021#
   poligono=as.character(poligono)
   poligono=toupper(poligono)
   delta_09_21=subset(data_frame, ubicacion==poligono)
-  delta_09_21=subset(delta_09_21, year %in% años)
+  delta_09_21=subset(delta_09_21, year %in% aÃ±os)
   
   
   y=delta_09_21$y
@@ -383,22 +383,22 @@ frame_poligono=function(data_frame, poligono, años){
   # month=delta_09_21$month
   day_year=delta_09_21$day_year
   
-  # delta_09_21$dias_años=as.numeric(difftime(as.Date(delta_09_21$FECHAACCIDENTE), as.Date("2008-12-31"), unit="days"))
-  # dias_años=delta_09_21$dias_años
+  # delta_09_21$dias_aÃ±os=as.numeric(difftime(as.Date(delta_09_21$FECHAACCIDENTE), as.Date("2008-12-31"), unit="days"))
+  # dias_aÃ±os=delta_09_21$dias_aÃ±os
   
   
   aux.yday.hour=(delta_09_21$year*100000+delta_09_21$day_year*100+delta_09_21$hour)
-  #aux.yday.hour = round((delta_09_21$dias_años + (delta_09_21$hour-1)/24),6)
+  #aux.yday.hour = round((delta_09_21$dias_aÃ±os + (delta_09_21$hour-1)/24),6)
   respuesta=tapply(y, list(aux.yday.hour ), sum, na.rm=TRUE)
   respuesta=as.data.frame(respuesta)
   respuesta[is.na(respuesta)] = 0
   names(respuesta)=c('y')
   
-  # respuesta$dias_años=tapply(dias_años, list(aux.yday.hour), mean, na.rm=TRUE)
+  # respuesta$dias_aÃ±os=tapply(dias_aÃ±os, list(aux.yday.hour), mean, na.rm=TRUE)
   # respuesta$hour=tapply(hour, list(aux.yday.hour), mean, na.rm=TRUE)
   # respuesta$wday=tapply(wday, list(aux.yday.hour), mean, na.rm=TRUE)
   # respuesta$month=tapply(month, list(aux.yday.hour), mean, na.rm=TRUE)
-  # respuesta$arm_dia=tapply(dias_años, list(aux.yday.hour), mean, na.rm=TRUE)
+  # respuesta$arm_dia=tapply(dias_aÃ±os, list(aux.yday.hour), mean, na.rm=TRUE)
   # respuesta$arm_hora=tapply(hour, list(aux.yday.hour), mean, na.rm=TRUE)
   
   respuesta$lluvia=(tapply(delta_09_21$lluvia, list(aux.yday.hour), sum, na.rm=TRUE)>0)
@@ -426,7 +426,7 @@ frame_poligono=function(data_frame, poligono, años){
   colnames(aux.v)=c("year","day_year","hour","aux.yday.hour")
   #aux.yday.hour=round((delta$year*100000+delta$day_year*100+delta$hour), 6)
   
-  #aux.vday_year=1:(365*length(años)+sum(leap_year(años)))
+  #aux.vday_year=1:(365*length(aÃ±os)+sum(leap_year(aÃ±os)))
   # aux.vday_year=aux.date[,4]
   # aux.vday_hour=1:24
   # aux.v = expand.grid(aux.vday_year , (aux.vday_hour-1)/24)
@@ -448,7 +448,7 @@ frame_poligono=function(data_frame, poligono, años){
   # day_years=respuesta$day_years
   # respuesta$arm_dia=tapply(day_years, list(aux.yday.hour), mean, na.rm=TRUE)
   
-  #dias=365*length(años)+sum(leap_year(años))
+  #dias=365*length(aÃ±os)+sum(leap_year(aÃ±os))
  
   respuesta$c1d=cos(2*pi*respuesta$arm_dia/366)
   respuesta$s1d=sin(2*pi*respuesta$arm_dia/366)
