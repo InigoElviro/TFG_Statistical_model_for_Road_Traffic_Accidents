@@ -41,6 +41,6 @@ In this section is briefly disccused how to best employ the R files develpoed in
 
 #### Experimental tests
 
--10-Modelización alternativa: Alternative modelization.
+-10-Modelización alternativa: Alternative modeling.
 
 -11-Pruebas: Tests.
