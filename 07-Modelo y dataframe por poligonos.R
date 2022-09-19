@@ -3,12 +3,12 @@
 
 
 #poligono="plaza"
-años=c(2009:2021)
+aÃ±os=c(2009:2021)
 
-aux.plaza=frame_poligono(delta_poligonos,"plaza",años)
-aux.figueruelas=frame_poligono(delta_poligonos,"figueruelas",años)
-aux.cuarte=frame_poligono(delta_poligonos,"cuarte",años)
-aux.villanueva=frame_poligono(delta_poligonos,"villanueva",años)
+aux.plaza=frame_poligono(delta_poligonos,"plaza",aÃ±os)
+aux.figueruelas=frame_poligono(delta_poligonos,"figueruelas",aÃ±os)
+aux.cuarte=frame_poligono(delta_poligonos,"cuarte",aÃ±os)
+aux.villanueva=frame_poligono(delta_poligonos,"villanueva",aÃ±os)
 
 aux.plaza$ubicacion="plaza"
 aux.figueruelas$ubicacion="figueruelas"
@@ -30,16 +30,16 @@ respuesta_poligono$ubic_villanueva=0+1*(aux.frame.poligonos$ubicacion==4)
 
 
 #------------------------------------#
-respuesta_poligono$dia_año=respuesta_poligono$day_year+respuesta_poligono$year*1000
+respuesta_poligono$dia_aÃ±o=respuesta_poligono$day_year+respuesta_poligono$year*1000
 
-subset_respuesta_poligono=subset(respuesta_poligono,respuesta_poligono$dia_año>0)
+subset_respuesta_poligono=subset(respuesta_poligono,respuesta_poligono$dia_aÃ±o>0)
 
-# prob_acc_poligono=tapply(subset_respuesta_poligono$y, list(subset_respuesta_poligono$dia_año), sum, na.rm=TRUE)
+# prob_acc_poligono=tapply(subset_respuesta_poligono$y, list(subset_respuesta_poligono$dia_aÃ±o), sum, na.rm=TRUE)
 # summary(prob_acc_poligono)
 
-prob_leve_poligono=tapply(subset_respuesta_poligono$leve, list(subset_respuesta_poligono$dia_año), sum, na.rm=TRUE)
-prob_grave_poligono=tapply(subset_respuesta_poligono$grave, list(subset_respuesta_poligono$dia_año), sum, na.rm=TRUE)
-prob_muerte_poligono=tapply(subset_respuesta_poligono$muertos, list(subset_respuesta_poligono$dia_año), sum, na.rm=TRUE)
+prob_leve_poligono=tapply(subset_respuesta_poligono$leve, list(subset_respuesta_poligono$dia_aÃ±o), sum, na.rm=TRUE)
+prob_grave_poligono=tapply(subset_respuesta_poligono$grave, list(subset_respuesta_poligono$dia_aÃ±o), sum, na.rm=TRUE)
+prob_muerte_poligono=tapply(subset_respuesta_poligono$muertos, list(subset_respuesta_poligono$dia_aÃ±o), sum, na.rm=TRUE)
 
 p_leve_P=summary(prob_leve_poligono)[4]
 p_grave_P=summary(prob_grave_poligono)[4]
@@ -133,7 +133,7 @@ plot_model(M_R_todos)+theme (axis.text.x = element_text(size=rel(2)),axis.text.y
 
 #------------------------------------#
 
-#INCLUIR INTERACCIÓN POLÍGONO
+#INCLUIR INTERACCIÃ“N POLÃGONO
 
 aux.x=respuesta_poligono$day_year
 efect_0=summary(M_R_todos)$coef[1]
@@ -209,7 +209,7 @@ aux.ylab=TeX("\\hat{\\mu}")
 #PLOT EFECTO 0
 linea=5
 
-plot(0:366, exp(aux.y.plot_0),ylim=c(min,max), type="n",main="",xlab = "día",ylab = "",cex.lab=1.5,cex.axis=1.4)
+plot(0:366, exp(aux.y.plot_0),ylim=c(min,max), type="n",main="",xlab = "dÃ­a",ylab = "",cex.lab=1.5,cex.axis=1.4)
 title(ylab=aux.ylab, line=2, cex.lab=1.75)
 my_label=cut(0:366, c(0,32,60,91,121,152,182,213,244,274,305,335,366),labels=c("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic" ), include.lowest=T)
 a=c(0,32,60,91,121,152,182,213,244,274,305,335)
@@ -227,7 +227,7 @@ abline(h=c(exp(efect_vm)), lty=3, lwd=linea,col="darkgreen")
 
 
 #PLOT EFECTO 1
-#plot(0:366, exp(aux.y.plot), type="n",main="",xlab = "día",ylab = "effect",cex.lab=1.5,cex.axis=2)
+#plot(0:366, exp(aux.y.plot), type="n",main="",xlab = "dÃ­a",ylab = "effect",cex.lab=1.5,cex.axis=2)
 lines(0:366, exp(aux.y.plot),col="red", lwd=linea)
 abline(h=c(exp(efect_2)), lty=3, lwd=linea,col="red")
 legend("top", ncol=2 ,legend=c("PLAZA", "FIGUERUELAS","CUARTE","VILLANUEVA"),text.font=2, lty=1,lwd=linea, col=c("black","red","blue","darkgreen" ),  cex=1.1)
@@ -264,7 +264,7 @@ hist(exp(aux.y.plot.figueruelas1)/exp(aux.y.plot.figueruelas0),xlim = c(xmin,xma
 
 #------------------------------------#
 
-#INCLUIR INTERACCIÓN  POLÍGONO CON TRABAJADORES
+#INCLUIR INTERACCIÃ“N  POLÃGONO CON TRABAJADORES
 
 tr_PLAZA=tabla_2017_2019[4,1]/1000
 tr_FIGUERUELAS=tabla_2017_2019[4,2]/1000
@@ -346,7 +346,7 @@ aux.ylab1=TeX("\\hat{\\lambda}")
 #PLOT EFECTO 0
 linea=5
 
-plot(0:366, exp(aux.y.plot_0/tr_PLAZA),ylim=c(min,max), type="n",main="",xlab = "día",ylab = "",cex.lab=1.5,cex.axis=1.4)
+plot(0:366, exp(aux.y.plot_0/tr_PLAZA),ylim=c(min,max), type="n",main="",xlab = "dÃ­a",ylab = "",cex.lab=1.5,cex.axis=1.4)
 title(ylab=aux.ylab1, line=2, cex.lab=1.75)
 my_label=cut(0:366, c(0,32,60,91,121,152,182,213,244,274,305,335,366),labels=c("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic" ), include.lowest=T)
 a=c(0,32,60,91,121,152,182,213,244,274,305,335)
@@ -364,7 +364,7 @@ abline(h=c(exp(efect_vm)/tr_VILLANUEVA), lty=3, lwd=linea,col="darkgreen")
 
 
 #PLOT EFECTO 1
-#plot(0:366, exp(aux.y.plot), type="n",main="",xlab = "día",ylab = "effect",cex.lab=1.5,cex.axis=2)
+#plot(0:366, exp(aux.y.plot), type="n",main="",xlab = "dÃ­a",ylab = "effect",cex.lab=1.5,cex.axis=2)
 lines(0:366, exp(aux.y.plot)/tr_FIGUERUELAS,col="red", lwd=linea)
 abline(h=c(exp(efect_2)/tr_FIGUERUELAS), lty=3, lwd=2,col="red")
 legend("top", ncol=2 ,legend=c("PLAZA", "FIGUERUELAS","CUARTE","VILLANUEVA"),text.font=2, lty=1,lwd=linea, col=c("black","red","blue","darkgreen" ),  cex=1.1)
@@ -401,7 +401,7 @@ hist(exp(aux.y.plot.figueruelas1)/exp(aux.y.plot.figueruelas0),xlim = c(xmin,xma
 
 #------------------------------------#
 
-#INCLUIR INTERACCIÓN POLÍGONO
+#INCLUIR INTERACCIÃ“N POLÃGONO
 
 aux.x=respuesta_poligono$hour
 efect_0=summary(M_R_todos)$coef[1]
@@ -486,7 +486,7 @@ aux.ylab=TeX("\\hat{\\mu}")
 #PLOT EFECTO 0
 linea=5
 
-plot(0:23, exp(aux.y.plot_0),ylim=c(min,max), type="n",main="",xlab = "día",ylab = "",cex.lab=1.5,cex.axis=1.4)
+plot(0:23, exp(aux.y.plot_0),ylim=c(min,max), type="n",main="",xlab = "dÃ­a",ylab = "",cex.lab=1.5,cex.axis=1.4)
 title(ylab=aux.ylab, line=2, cex.lab=1.75)
 lines(0:23, exp(aux.y.plot_0), lwd=linea)
 abline(v=c(3,6,9,12,15,18,21), lty=3, lwd=0.1)
@@ -500,7 +500,7 @@ abline(h=c(exp(efect_vm)), lty=3, lwd=linea,col="darkgreen")
 
 
 #PLOT EFECTO 1
-#plot(0:23, exp(aux.y.plot), type="n",main="",xlab = "día",ylab = "effect",cex.lab=1.5,cex.axis=2)
+#plot(0:23, exp(aux.y.plot), type="n",main="",xlab = "dÃ­a",ylab = "effect",cex.lab=1.5,cex.axis=2)
 lines(0:23, exp(aux.y.plot),col="red", lwd=linea)
 abline(h=c(exp(efect_2)), lty=3, lwd=linea,col="red")
 legend("top", ncol=2 ,legend=c("PLAZA", "FIGUERUELAS","CUARTE","VILLANUEVA"),text.font=2, lty=1,lwd=linea, col=c("black","red","blue","darkgreen" ),  cex=1.1)
@@ -539,7 +539,7 @@ hist(exp(efect_c)/exp(aux.y.plot.figueruelas0),xlim = c(xmin,xmax))
 
 #------------------------------------#
 
-#INCLUIR INTERACCIÓN  POLÍGONO CON TRABAJADORES
+#INCLUIR INTERACCIÃ“N  POLÃGONO CON TRABAJADORES
 
 tr_PLAZA=tabla_2017_2019[4,1]/1000
 tr_FIGUERUELAS=tabla_2017_2019[4,2]/1000
@@ -629,7 +629,7 @@ aux.ylab1=TeX("\\hat{\\lambda}")
 #PLOT EFECTO 0
 linea=5
 
-plot(0:23, exp(aux.y.plot_0/tr_PLAZA),ylim=c(min,max), type="n",main="",xlab = "día",ylab = "",cex.lab=1.5,cex.axis=1.4)
+plot(0:23, exp(aux.y.plot_0/tr_PLAZA),ylim=c(min,max), type="n",main="",xlab = "dÃ­a",ylab = "",cex.lab=1.5,cex.axis=1.4)
 title(ylab=aux.ylab1, line=2, cex.lab=1.75)
 lines(0:23, exp(aux.y.plot_0)/tr_PLAZA, lwd=linea)
 abline(v=c(3,6,9,12,15,18,21), lty=3, lwd=0.1)
@@ -643,7 +643,7 @@ abline(h=c(exp(efect_vm)/tr_VILLANUEVA), lty=3, lwd=linea,col="darkgreen")
 
 
 #PLOT EFECTO 1
-#plot(0:23, exp(aux.y.plot), type="n",main="",xlab = "día",ylab = "effect",cex.lab=1.5,cex.axis=2)
+#plot(0:23, exp(aux.y.plot), type="n",main="",xlab = "dÃ­a",ylab = "effect",cex.lab=1.5,cex.axis=2)
 lines(0:23, exp(aux.y.plot)/tr_FIGUERUELAS,col="red", lwd=linea)
 abline(h=c(exp(efect_2)/tr_FIGUERUELAS), lty=3, lwd=2,col="red")
 legend("top", ncol=2 ,legend=c("PLAZA", "FIGUERUELAS","CUARTE","VILLANUEVA"),text.font=2, lty=1,lwd=linea, col=c("black","red","blue","darkgreen" ),  cex=1.1)
