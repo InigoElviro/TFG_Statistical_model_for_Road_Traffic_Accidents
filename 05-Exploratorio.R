@@ -86,8 +86,8 @@ aux.time=delta$month
 
 plot_mean_VS_sd2(aux.df,aux.time)
 
-años=c(2009:2021)
-aux.df=subset(delta, year %in% años)
+aÃ±os=c(2009:2021)
+aux.df=subset(delta, year %in% aÃ±os)
 aux.time=aux.df$year*1000+aux.df$day_year
 aux.number.acc=tapply(aux.df$year>0, aux.time, sum)
 aux.group=tapply(1000*aux.df$year+round(aux.df$day_year/15,digits=0), aux.time, mean)
@@ -168,10 +168,10 @@ accidentes_todos_los_dias_semana(delta)
 
 #Analisis ciclicidad de los dias del a?o
 
-efecto_dia_año(delta)
+efecto_dia_aÃ±o(delta)
 #dev.print(pdf, '4.07.pdf' ,  height=10, width=10 )
 
-accidentes_año(delta)
+accidentes_aÃ±o(delta)
 #dev.print(pdf, '4.08.pdf' ,  height=10, width=10 )
 
 efecto_dia_semana(delta,c(1,7),2021)
