@@ -21,7 +21,7 @@ In this section is briefly disccused how to best employ the R files develpoed in
 
 #### Main code
 
--01-Librerias: Helpful libraries used.
+-01-Librerias: Helpful R libraries used.
 
 -02-Funciones: Own functions developed to ease the analysis of the response.
 
