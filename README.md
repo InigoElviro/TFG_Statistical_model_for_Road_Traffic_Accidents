@@ -23,7 +23,7 @@ In this section is briefly disccused how to best employ the R files develpoed in
 
 -01 - **Librerias**: Helpful R libraries used.
 
--02 - **Funciones**: Own functions developed to ease the analysis of the response.
+-02 - **Funciones**: Self-made functions developed to ease the analysis of the response.
 
 -03 - **Lectura e inicializacion**: Loading step of the database, and introduction of new variables, ubication-wise and temporary-wise, and categorical variables.
 
